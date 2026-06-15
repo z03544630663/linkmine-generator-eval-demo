@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BitMain × DMA × LinkMine 天然气发电机组联合评测</title>
+  <meta name="description" content="BitMain、DMA、LinkMine 联合发起的天然气发电机组真实运行观察，展示统一场景下的运行数据、技术方案和项目需求入口。">
+  <meta property="og:title" content="BitMain × DMA × LinkMine 天然气发电机组联合评测">
+  <meta property="og:description" content="统一气源、统一矿机负载、统一数据口径下的天然气发电机组真实运行观察。">
+  <meta property="og:image" content="./assets/generator-field.png">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="global-nav" aria-label="主导航">
+    <div class="nav-inner">
+      <a class="brand" href="#top" aria-label="LinkMine 首页">
+        <img class="nav-brand-logo" src="./assets/linkmine-nav-logo.png" alt="LinkMine">
+      </a>
+      <nav class="nav-links" aria-label="页面导航">
+        <a href="#joint" data-i18n="navJoint">联合评测</a>
+        <a href="#method" data-i18n="navMethod">评测方法</a>
+        <a href="#compare" data-i18n="navCompare">横向对比</a>
+        <a href="#inquiry" data-i18n="navInquiry">提交需求</a>
+      </nav>
+      <button class="language-button" type="button" id="languageToggle" aria-label="切换语言" aria-pressed="false">
+        <span>ZH</span>
+        <span>EN</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="heroTitle">
+      <div class="hero-copy">
+        <p class="kicker" data-i18n="heroKicker">BitMain · DMA · LinkMine</p>
+        <h1 id="heroTitle" data-i18n="heroTitle">天然气发电机组联合评测</h1>
+        <p class="hero-lead" data-i18n="heroLead">三方联合发起真实运行观察：同一气源、同一矿机负载、同一 LinkPlant 数据口径，记录不同主机厂方案在现场的持续表现。</p>
+        <div class="partner-strip" aria-label="联合评测发起方与观察方">
+          <div class="partner-logo-card bitmain-card">
+            <img src="./assets/bitmain-logo.png" alt="BitMain">
+          </div>
+          <div class="partner-logo-card dma-card">
+            <img src="./assets/dma-logo.png" alt="DMA 数字矿业联盟">
+          </div>
+          <div class="partner-logo-card linkmine-card">
+            <img src="./assets/linkmine-joint-logo.png" alt="LinkMine">
+          </div>
+          <div class="partner-logo-card partner-slot">
+            <span data-i18n="observerSlot">观察方席位</span>
+          </div>
+          <div class="partner-logo-card partner-slot">
+            <span data-i18n="observerSlot">观察方席位</span>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a class="primary-action" href="#compare" data-i18n="viewData">查看数据</a>
+          <a class="text-action" href="#inquiry" data-i18n="submitDemand">提交需求</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="metric-strip" aria-label="项目概览">
+      <div class="metric">
+        <span data-i18n="metricSuppliers">主机厂</span>
+        <strong id="supplierCount">3</strong>
+      </div>
+      <div class="metric">
+        <span data-i18n="metricUnits">接入机组</span>
+        <strong id="unitCount">6</strong>
+      </div>
+      <div class="metric">
+        <span data-i18n="metricRuntime">累计运行</span>
+        <strong id="runtimeTotal">1,802 h</strong>
+      </div>
+      <div class="metric">
+        <span data-i18n="metricSite">场景</span>
+        <strong data-i18n="metricScene">矿机负载</strong>
+      </div>
+    </section>
+
+    <section class="section section-joint" id="joint" aria-labelledby="jointTitle">
+      <div class="section-copy">
+        <h2 id="jointTitle" data-i18n="jointTitle">从真实负载里看机组方案</h2>
+        <p data-i18n="jointLead">本次活动围绕 LinkMine 加拿大天然气资源与矿机负载场景展开，以现场连续运行、电量结算和阶段性报告作为观察基础。</p>
+      </div>
+      <div class="joint-grid">
+        <article class="joint-card">
+          <span data-i18n="jointOneEyebrow">项目模式</span>
+          <h3 data-i18n="jointOneTitle">真实运行，不做静态展示</h3>
+          <p data-i18n="jointOneBody">合格主机厂以自有设备接入现场，机组输出并被矿机负载有效消纳后，按确认口径形成运行与结算记录。</p>
+        </article>
+        <article class="joint-card">
+          <span data-i18n="jointTwoEyebrow">联合角色</span>
+          <h3 data-i18n="jointTwoTitle">BitMain、DMA、LinkMine 协同发起</h3>
+          <p data-i18n="jointTwoBody">BitMain 参与矿机负载与产业链协同，DMA 参与行业观察与内容发布，LinkMine 提供场景、数据采集和项目组织。</p>
+        </article>
+        <article class="joint-card">
+          <span data-i18n="jointThreeEyebrow">边界说明</span>
+          <h3 data-i18n="jointThreeTitle">数据观察，不做采购背书</h3>
+          <p data-i18n="jointThreeBody">页面展示经授权的数据、阶段报告和技术资料，不构成设备认证、采购承诺或指定供应商推荐。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-method" id="method" aria-labelledby="methodTitle">
+      <div class="section-copy">
+        <h2 id="methodTitle" data-i18n="methodTitle">评测只统一场景，不统一方案</h2>
+        <p data-i18n="methodLead">项目统一天然气资源、矿机负载、现场运维规则、环境记录和 LinkPlant 数据口径；主机厂自行提交技术路线和机组方案。</p>
+      </div>
+      <div class="method-grid" id="methodGrid"></div>
+    </section>
+
+    <section class="section section-gallery" aria-labelledby="galleryTitle">
+      <div class="gallery-panel">
+        <h2 id="galleryTitle" data-i18n="galleryTitle">现场记录优先</h2>
+        <p data-i18n="galleryLead">页面展示的核心不是宣传语，而是持续运行、有效消纳电量、停机原因、响应时间和阶段性记录。</p>
+      </div>
+      <div class="gallery-feed" aria-label="数据披露范围">
+        <div>
+          <span data-i18n="feedOneLabel">LinkPlant</span>
+          <strong data-i18n="feedOneValue">运行数据采集</strong>
+        </div>
+        <div>
+          <span data-i18n="feedTwoLabel">Settlement</span>
+          <strong data-i18n="feedTwoValue">有效消纳电量</strong>
+        </div>
+        <div>
+          <span data-i18n="feedThreeLabel">Stage Report</span>
+          <strong data-i18n="feedThreeValue">阶段观察报告</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-brands" aria-labelledby="brandsTitle">
+      <div class="section-copy compact">
+        <h2 id="brandsTitle" data-i18n="brandsTitle">参与评测的主机厂</h2>
+        <p data-i18n="brandsLead">品牌展示只代表进入或拟进入评测流程，不构成采购建议或性能背书。</p>
+      </div>
+      <div class="brand-carousel" id="brandCarousel">
+        <button class="brand-arrow brand-arrow-prev" type="button" id="brandPrev" aria-label="上一组主机厂">‹</button>
+        <div class="brand-viewport" id="brandViewport">
+          <div class="brand-wall" id="brandWall"></div>
+        </div>
+        <button class="brand-arrow brand-arrow-next" type="button" id="brandNext" aria-label="下一组主机厂">›</button>
+        <div class="brand-dots" id="brandDots" aria-label="主机厂轮播分页"></div>
+      </div>
+    </section>
+
+    <section class="section section-compare" id="compare" aria-labelledby="compareTitle">
+      <div class="section-copy">
+        <h2 id="compareTitle" data-i18n="compareTitle">发电机组横向对比</h2>
+        <p data-i18n="compareLead">每家主机厂提供两台常用功率段 250kW 机组。公开字段聚焦实际运行、非计划停机、响应时间和主机厂提交资料。</p>
+      </div>
+      <div class="toolbar" role="group" aria-label="筛选供应商">
+        <button class="filter-chip active" type="button" data-filter="all" data-i18n="filterAll">全部</button>
+        <button class="filter-chip" type="button" data-filter="running" data-i18n="filterRunning">运行中</button>
+        <button class="filter-chip" type="button" data-filter="pending" data-i18n="filterPending">待接入</button>
+      </div>
+      <div class="comparison-shell">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th data-i18n="thSupplier">主机厂</th>
+              <th data-i18n="thUnit">机组</th>
+              <th data-i18n="thModel">型号</th>
+              <th data-i18n="thStatus">状态</th>
+              <th data-i18n="thPower">输出功率</th>
+              <th data-i18n="thHours">运行小时</th>
+              <th data-i18n="thOnline">在线率</th>
+              <th data-i18n="thOutage">停机</th>
+              <th data-i18n="thResponse">响应</th>
+              <th data-i18n="thAction">详情</th>
+            </tr>
+          </thead>
+          <tbody id="comparisonRows">
+            <tr class="loading-row">
+              <td colspan="10">
+                <span class="skeleton wide"></span>
+                <span class="skeleton"></span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="detail-panel" id="detailPanel" hidden></div>
+    </section>
+
+    <section class="section section-inquiry" id="inquiry" aria-labelledby="inquiryTitle">
+      <div class="inquiry-copy">
+        <h2 id="inquiryTitle" data-i18n="inquiryTitle">提交项目需求</h2>
+        <p data-i18n="inquiryLead">用于发电机组、矿机、电力消纳和天然气资源项目对接。提交后由后台统一管理。</p>
+      </div>
+      <form class="inquiry-form" id="inquiryForm" novalidate>
+        <div class="form-row">
+          <label for="company" data-i18n="labelCompany">公司名称</label>
+          <input id="company" name="company" type="text" autocomplete="organization" required>
+          <p class="field-error" data-field="company"></p>
+        </div>
+        <div class="form-row">
+          <label for="contact" data-i18n="labelContact">联系人</label>
+          <input id="contact" name="contact" type="text" autocomplete="name" required>
+          <p class="field-error" data-field="contact"></p>
+        </div>
+        <div class="form-row">
+          <label for="email" data-i18n="labelEmail">联系邮箱</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+          <p class="field-error" data-field="email"></p>
+        </div>
+        <div class="form-row">
+          <label for="location" data-i18n="labelLocation">项目所在地</label>
+          <input id="location" name="location" type="text" autocomplete="address-level1" required>
+          <p class="field-error" data-field="location"></p>
+        </div>
+        <div class="form-row">
+          <label for="capacity" data-i18n="labelCapacity">计划容量</label>
+          <input id="capacity" name="capacity" type="text" inputmode="text" required>
+          <p class="field-error" data-field="capacity"></p>
+        </div>
+        <div class="form-row full">
+          <label for="message" data-i18n="labelMessage">需求说明</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+          <p class="field-error" data-field="message"></p>
+        </div>
+        <div class="form-footer">
+          <p class="form-note" data-i18n="privacyNote">提交信息仅用于项目匹配和合作方沟通，不构成交易、设备推荐或性能保证。</p>
+          <button class="primary-action" type="submit" data-i18n="formSubmit">提交</button>
+        </div>
+        <p class="form-status" id="formStatus" role="status"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>BitMain · DMA · LinkMine 联合评测</div>
+    <div class="footer-links">
+      <a href="#joint" data-i18n="footerJoint">联合评测</a>
+      <a href="#method" data-i18n="footerMethod">评测方法</a>
+      <a href="#compare" data-i18n="footerData">运行数据</a>
+      <a href="#inquiry" data-i18n="footerInquiry">项目需求</a>
+    </div>
+  </footer>
+
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
