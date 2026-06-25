@@ -70,8 +70,8 @@
         <strong id="unitCount">6</strong>
       </div>
       <div class="metric">
-        <span data-i18n="metricRuntime">累计运行</span>
-        <strong id="runtimeTotal">1,802 h</strong>
+        <span data-i18n="metricRuntime">日历时间</span>
+        <strong id="runtimeTotal">4 天 0 h</strong>
       </div>
       <div class="metric">
         <span data-i18n="metricSite">场景</span>
@@ -114,16 +114,16 @@
     <section class="section section-gallery" aria-labelledby="galleryTitle">
       <div class="gallery-panel">
         <h2 id="galleryTitle" data-i18n="galleryTitle">现场记录优先</h2>
-        <p data-i18n="galleryLead">页面展示的核心不是宣传语，而是持续运行、有效消纳电量、停机原因、响应时间和阶段性记录。</p>
+        <p data-i18n="galleryLead">页面展示的核心不是宣传语，而是累积消纳电量、发电功率、效率、在线率、停机原因和阶段性记录。</p>
       </div>
       <div class="gallery-feed" aria-label="数据披露范围">
         <div>
-          <span data-i18n="feedOneLabel">LinkPlant</span>
-          <strong data-i18n="feedOneValue">运行数据采集</strong>
+          <span data-i18n="feedOneLabel">Settlement</span>
+          <strong data-i18n="feedOneValue">累积消纳电量</strong>
         </div>
         <div>
-          <span data-i18n="feedTwoLabel">Settlement</span>
-          <strong data-i18n="feedTwoValue">有效消纳电量</strong>
+          <span data-i18n="feedTwoLabel">LinkPlant</span>
+          <strong data-i18n="feedTwoValue">功率 / 效率 / 在线率</strong>
         </div>
         <div>
           <span data-i18n="feedThreeLabel">Stage Report</span>
@@ -135,22 +135,15 @@
     <section class="section section-brands" aria-labelledby="brandsTitle">
       <div class="section-copy compact">
         <h2 id="brandsTitle" data-i18n="brandsTitle">参与评测的主机厂</h2>
-        <p data-i18n="brandsLead">品牌展示只代表进入或拟进入评测流程，不构成采购建议或性能背书。</p>
+        <p data-i18n="brandsLead">所有参赛主机厂统一展示，便于一眼看到当前进入或拟进入评测流程的厂商。</p>
       </div>
-      <div class="brand-carousel" id="brandCarousel">
-        <button class="brand-arrow brand-arrow-prev" type="button" id="brandPrev" aria-label="上一组主机厂">‹</button>
-        <div class="brand-viewport" id="brandViewport">
-          <div class="brand-wall" id="brandWall"></div>
-        </div>
-        <button class="brand-arrow brand-arrow-next" type="button" id="brandNext" aria-label="下一组主机厂">›</button>
-        <div class="brand-dots" id="brandDots" aria-label="主机厂轮播分页"></div>
-      </div>
+      <div class="brand-wall" id="brandWall"></div>
     </section>
 
     <section class="section section-compare" id="compare" aria-labelledby="compareTitle">
       <div class="section-copy">
         <h2 id="compareTitle" data-i18n="compareTitle">发电机组横向对比</h2>
-        <p data-i18n="compareLead">每家主机厂提供两台常用功率段 250kW 机组。公开字段聚焦实际运行、非计划停机、响应时间和主机厂提交资料。</p>
+        <p data-i18n="compareLead">比赛统一集装箱尺寸（例如 40 尺高柜）和动力舱尺寸（例如 5.6 米），不锁定单一功率段；公开字段聚焦输出发电功率、发电效率、运行小时、在线率、累积发电量、停机和响应。</p>
       </div>
       <div class="toolbar" role="group" aria-label="筛选供应商">
         <button class="filter-chip active" type="button" data-filter="all" data-i18n="filterAll">全部</button>
@@ -165,9 +158,11 @@
               <th data-i18n="thUnit">机组</th>
               <th data-i18n="thModel">型号</th>
               <th data-i18n="thStatus">状态</th>
-              <th data-i18n="thPower">输出功率</th>
+              <th data-i18n="thPower">输出发电功率</th>
+              <th data-i18n="thEfficiency">发电效率</th>
               <th data-i18n="thHours">运行小时</th>
               <th data-i18n="thOnline">在线率</th>
+              <th data-i18n="thEnergy">累积发电量</th>
               <th data-i18n="thOutage">停机</th>
               <th data-i18n="thResponse">响应</th>
               <th data-i18n="thAction">详情</th>
@@ -175,7 +170,7 @@
           </thead>
           <tbody id="comparisonRows">
             <tr class="loading-row">
-              <td colspan="10">
+              <td colspan="12">
                 <span class="skeleton wide"></span>
                 <span class="skeleton"></span>
               </td>

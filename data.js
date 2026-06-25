@@ -1,4 +1,5 @@
 window.LINKMINE_STATIC_DATA = {
+  event_start: "2026-06-21T00:00:00+08:00",
   suppliers: [
     {
       id: 1,
@@ -11,8 +12,8 @@ window.LINKMINE_STATIC_DATA = {
       factory_name_en: "NorthStar Power Systems Inc.",
       participant_type: "发电机组主机厂",
       participation_status: "现场运行中",
-      proposal_title_zh: "250kW 稀薄燃烧天然气机组技术方案",
-      proposal_title_en: "250 kW lean-burn natural gas generator proposal",
+      proposal_title_zh: "高功率密度稀薄燃烧天然气机组技术方案",
+      proposal_title_en: "High-power-density lean-burn natural gas generator proposal",
       proposal_summary_zh: "采用稀薄燃烧发动机、电子空燃比控制和高温环境散热包，重点验证矿机连续负载下的稳定输出和维护周期。",
       proposal_summary_en: "Uses lean-burn engine, electronic air-fuel control and high-ambient cooling package to validate stable output and service cycle under continuous mining load.",
       proposal_file: "/uploads/proposals/northstar-ng250a.pdf",
@@ -52,8 +53,8 @@ window.LINKMINE_STATIC_DATA = {
       factory_name_en: "GasDrive OEM Group",
       participant_type: "发电机组主机厂",
       participation_status: "现场运行中",
-      proposal_title_zh: "250kW 闭环混合气控制机组技术方案",
-      proposal_title_en: "250 kW closed-loop mixture control generator proposal",
+      proposal_title_zh: "闭环混合气控制天然气机组技术方案",
+      proposal_title_en: "Closed-loop mixture control natural gas generator proposal",
       proposal_summary_zh: "采用化学计量燃烧、闭环混合气控制和低温启动逻辑，重点验证气压波动和冬季环境下的运行稳定性。",
       proposal_summary_en: "Uses stoichiometric combustion, closed-loop mixture control and cold-start logic to validate stability under gas pressure fluctuation and winter conditions.",
       proposal_file: "/uploads/proposals/gasdrive-gx250b.pdf",
@@ -134,8 +135,8 @@ window.LINKMINE_STATIC_DATA = {
       factory_name_en: "AtlasPrime Energy Equipment",
       participant_type: "发电机组主机厂",
       participation_status: "资料审核中",
-      proposal_title_zh: "250kW 集装箱式天然气机组方案",
-      proposal_title_en: "250 kW containerized natural gas generator proposal",
+      proposal_title_zh: "集装箱式天然气机组方案",
+      proposal_title_en: "Containerized natural gas generator proposal",
       proposal_summary_zh: "提交集装箱式机组资料，重点关注矿区快速部署、远程监控和低噪声运行。",
       proposal_summary_en: "Submitted containerized unit files, focusing on quick site deployment, remote monitoring and low-noise operation.",
       proposal_file: "待上传",
@@ -175,8 +176,8 @@ window.LINKMINE_STATIC_DATA = {
       factory_name_en: "GreenMotion Power",
       participant_type: "发电机组主机厂",
       participation_status: "现场运行中",
-      proposal_title_zh: "250kW 高海拔适应型天然气机组方案",
-      proposal_title_en: "250 kW high-altitude-ready natural gas generator proposal",
+      proposal_title_zh: "高海拔适应型天然气机组方案",
+      proposal_title_en: "High-altitude-ready natural gas generator proposal",
       proposal_summary_zh: "采用高海拔标定与强化散热配置，重点观察持续负载下的温度控制和输出稳定性。",
       proposal_summary_en: "Uses high-altitude calibration and enhanced cooling to observe temperature control and output stability under continuous load.",
       proposal_file: "/uploads/proposals/greenmotion-gm250e.pdf",
@@ -216,8 +217,8 @@ window.LINKMINE_STATIC_DATA = {
       factory_name_en: "HorizonVolt Systems",
       participant_type: "发电机组主机厂",
       participation_status: "拟进入评测",
-      proposal_title_zh: "250kW 双燃料预留天然气机组方案",
-      proposal_title_en: "250 kW natural gas generator proposal with dual-fuel reserve",
+      proposal_title_zh: "双燃料预留天然气机组方案",
+      proposal_title_en: "Natural gas generator proposal with dual-fuel reserve",
       proposal_summary_zh: "提交预留双燃料扩展能力的天然气机组方案，计划先按天然气单燃料口径接入观察。",
       proposal_summary_en: "Submitted a gas generator proposal with reserved dual-fuel expandability, planned for initial gas-only observation.",
       proposal_file: "待上传",
@@ -254,7 +255,7 @@ window.LINKMINE_STATIC_DATA = {
       { title: "统一现场运维", body: "统一巡检、告警响应、停机记录和安全管理口径，让不同主机厂的记录可比较。" },
       { title: "统一气候环境记录", body: "记录温度、湿度、天气、季节变化和现场环境，观察机组对加拿大现场的适应能力。" },
       { title: "统一 LinkPlant 数据", body: "全部机组接入 LinkPlant，形成运行状态、负载、告警、维护和环境数据的同一采集口径。" },
-      { title: "统一基础准入", body: "每家主机厂提供 2 台常用功率段 250kW 机组，并满足安全、接入和数据要求。" }
+      { title: "统一尺寸约束", body: "统一集装箱尺寸（如 40 尺高柜）和动力舱尺寸（如 5.6 米），不锁定单一额定功率；谁能布置更多功率、消纳更多功率，就用现场数据体现。" }
     ],
     en: [
       { title: "Unified gas resource", body: "All qualified units use the same site gas resource, with pressure, gas quality and supply status recorded for comparison." },
@@ -262,7 +263,7 @@ window.LINKMINE_STATIC_DATA = {
       { title: "Unified field operation", body: "Inspection, alarms, stoppage records and safety rules use one operating framework so OEM records remain comparable." },
       { title: "Unified environment record", body: "Temperature, humidity, weather, seasonal changes and site environment are recorded to assess Canadian field adaptation." },
       { title: "Unified LinkPlant data", body: "All units connect to LinkPlant for one data framework across runtime, load, alarms, maintenance and environment." },
-      { title: "Unified entry criteria", body: "Each OEM provides two 250 kW-class units and meets safety, connection and data requirements." }
+      { title: "Unified size constraints", body: "The container size, such as a 40 ft high-cube, and power-cabin size, such as 5.6 m, are standardized. Power class is not locked; higher installable and consumable power is reflected by field data." }
     ]
   }
 };

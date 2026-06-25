@@ -672,32 +672,19 @@ h3 {
   letter-spacing: -.04em;
 }
 
-.brand-carousel {
-  position: relative;
-}
-
-.brand-viewport {
-  overflow: hidden;
-  padding: 4px 2px 18px;
-}
-
 .brand-wall {
   display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: calc((100% - 32px) / 3);
-  gap: 16px;
-  transition: transform 520ms cubic-bezier(.16, 1, .3, 1);
-  will-change: transform;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 12px;
 }
 
 .brand-card {
-  height: 250px;
+  height: 172px;
   min-height: 0;
   display: grid;
   grid-template-rows: auto auto minmax(0, 1fr) auto auto;
   align-content: start;
-  padding: 24px;
-  scroll-snap-align: start;
+  padding: 16px;
   transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
 }
 
@@ -710,27 +697,33 @@ h3 {
 
 .brand-logo {
   display: grid;
-  width: 58px;
-  height: 58px;
-  margin-bottom: 22px;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 12px;
   place-items: center;
   border: 1px solid rgba(120, 138, 132, .2);
-  border-radius: 18px;
+  border-radius: 14px;
   background: rgba(250, 252, 250, .78);
   color: #455057;
+  font-size: .78rem;
   font-weight: 700;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, .55);
 }
 
 .brand-card h3 {
   display: -webkit-box;
-  min-height: 2.36em;
+  min-height: 2.28em;
+  margin-bottom: 8px;
+  font-size: .98rem;
+  line-height: 1.14;
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
 }
 
 .brand-card p {
+  font-size: .8rem;
+  line-height: 1.35;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -739,71 +732,10 @@ h3 {
 .brand-status {
   display: inline-flex;
   align-self: end;
-  margin-top: 16px;
+  margin-top: 10px;
   color: #1d6c55;
-  font-size: .84rem;
+  font-size: .78rem;
   font-weight: 700;
-}
-
-.brand-arrow {
-  position: absolute;
-  top: 50%;
-  z-index: 3;
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  border: 1px solid rgba(16, 22, 21, .12);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, .92);
-  color: var(--ink);
-  font-size: 1.75rem;
-  line-height: 1;
-  box-shadow: 0 14px 30px rgba(12, 19, 17, .12);
-  transform: translateY(-50%);
-  transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease;
-}
-
-.brand-arrow:hover,
-.brand-arrow:focus-visible {
-  border-color: rgba(69, 215, 168, .42);
-  background: #fff;
-  transform: translateY(-50%) scale(1.04);
-}
-
-.brand-arrow-prev {
-  left: -18px;
-}
-
-.brand-arrow-next {
-  right: -18px;
-}
-
-.brand-carousel.is-static .brand-arrow,
-.brand-carousel.is-static .brand-dots {
-  display: none;
-}
-
-.brand-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 2px;
-}
-
-.brand-dot {
-  width: 8px;
-  height: 8px;
-  border: 0;
-  border-radius: 999px;
-  background: rgba(16, 22, 21, .18);
-  padding: 0;
-  transition: width 180ms ease, background-color 180ms ease;
-}
-
-.brand-dot.is-active {
-  width: 24px;
-  background: var(--green);
 }
 
 .section-compare {
@@ -861,7 +793,7 @@ h3 {
 
 .comparison-table {
   width: 100%;
-  min-width: 1040px;
+  min-width: 1260px;
   border-collapse: collapse;
   font-size: .86rem;
 }
@@ -894,7 +826,9 @@ h3 {
 .comparison-table td:nth-child(5),
 .comparison-table td:nth-child(6),
 .comparison-table td:nth-child(7),
-.comparison-table td:nth-child(8) {
+.comparison-table td:nth-child(8),
+.comparison-table td:nth-child(9),
+.comparison-table td:nth-child(10) {
   font-variant-numeric: tabular-nums;
 }
 
@@ -1428,7 +1362,7 @@ h3 {
   }
 
   .brand-wall {
-    grid-auto-columns: calc((100% - 16px) / 2);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .gallery-panel {
@@ -1476,29 +1410,11 @@ h3 {
   }
 
   .brand-wall {
-    grid-auto-columns: 100%;
-  }
-
-  .brand-viewport {
-    padding-bottom: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .brand-card {
-    height: 236px;
-  }
-
-  .brand-arrow {
-    width: 38px;
-    height: 38px;
-    font-size: 1.55rem;
-  }
-
-  .brand-arrow-prev {
-    left: -8px;
-  }
-
-  .brand-arrow-next {
-    right: -8px;
+    height: 176px;
   }
 
   h1 {

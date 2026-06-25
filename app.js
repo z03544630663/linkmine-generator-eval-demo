@@ -4,8 +4,6 @@
   var activePanel = { supplierId: null, mode: null };
   var filter = "all";
   var apiBase = window.LINKMINE_API_BASE || "/api";
-  var brandPage = 0;
-  var brandTimer = null;
 
   var dictionary = {
     zh: {
@@ -21,7 +19,7 @@
       submitDemand: "提交需求",
       metricSuppliers: "主机厂",
       metricUnits: "接入机组",
-      metricRuntime: "累计运行",
+      metricRuntime: "日历时间",
       metricSite: "场景",
       metricScene: "矿机负载",
       jointTitle: "从真实负载里看机组方案",
@@ -38,19 +36,17 @@
       methodTitle: "评测只统一场景，不统一方案",
       methodLead: "项目统一天然气资源、矿机负载、现场运维规则、环境记录和 LinkPlant 数据口径；主机厂自行提交技术路线和机组方案。",
       galleryTitle: "现场记录优先",
-      galleryLead: "页面展示的核心不是宣传语，而是持续运行、有效消纳电量、停机原因、响应时间和阶段性记录。",
-      feedOneLabel: "LinkPlant",
-      feedOneValue: "运行数据采集",
-      feedTwoLabel: "Settlement",
-      feedTwoValue: "有效消纳电量",
+      galleryLead: "页面展示的核心不是宣传语，而是累积消纳电量、发电功率、效率、在线率、停机原因和阶段性记录。",
+      feedOneLabel: "Settlement",
+      feedOneValue: "累积消纳电量",
+      feedTwoLabel: "LinkPlant",
+      feedTwoValue: "功率 / 效率 / 在线率",
       feedThreeLabel: "Stage Report",
       feedThreeValue: "阶段观察报告",
       brandsTitle: "参与评测的主机厂",
-      brandsLead: "品牌展示只代表进入或拟进入评测流程，不构成采购建议或性能背书。",
-      brandPrev: "上一组主机厂",
-      brandNext: "下一组主机厂",
+      brandsLead: "所有参赛主机厂统一展示，便于一眼看到当前进入或拟进入评测流程的厂商。",
       compareTitle: "发电机组横向对比",
-      compareLead: "每家主机厂提供两台常用功率段 250kW 机组。公开字段聚焦实际运行、非计划停机、响应时间和主机厂提交资料。",
+      compareLead: "比赛统一集装箱尺寸（例如 40 尺高柜）和动力舱尺寸（例如 5.6 米），不锁定单一功率段；公开字段聚焦输出发电功率、发电效率、运行小时、在线率、累积发电量、停机和响应。",
       filterAll: "全部",
       filterRunning: "运行中",
       filterPending: "待接入",
@@ -58,9 +54,11 @@
       thUnit: "机组",
       thModel: "型号",
       thStatus: "状态",
-      thPower: "输出功率",
+      thPower: "输出发电功率",
+      thEfficiency: "发电效率",
       thHours: "运行小时",
       thOnline: "在线率",
+      thEnergy: "累积发电量",
       thOutage: "停机",
       thResponse: "响应",
       thAction: "操作",
@@ -94,15 +92,18 @@
       monitorTitle: "监控画面",
       monitorCopy: "监控画面以现场摄像头接入和授权展示范围为准。",
       loadRate: "负载情况",
-      outputStatus: "输出情况",
+      outputStatus: "输出发电功率",
       voltage: "输出电压",
       current: "输出电流",
       frequency: "输出频率",
       powerFactor: "功率因数",
       rpm: "发动机转速",
       gasPressure: "燃气压力",
-      coolantTemp: "水温",
+      coolantTemp: "冷却水温度",
       oilPressure: "机油压力",
+      exhaustTemp: "涡前排气温度",
+      manifoldPressure: "进气歧管压力",
+      manifoldTemp: "进气歧管温度",
       continuousHours: "持续运行时间",
       runningRemark: "运行备注",
       coreConfig: "核心配置",
@@ -133,7 +134,7 @@
       submitDemand: "Submit demand",
       metricSuppliers: "Suppliers",
       metricUnits: "Connected units",
-      metricRuntime: "Run hours",
+      metricRuntime: "Calendar time",
       metricSite: "Scenario",
       metricScene: "Mining load",
       jointTitle: "Evaluating generator solutions under real load",
@@ -150,19 +151,17 @@
       methodTitle: "The scenario is fixed. The solutions are not.",
       methodLead: "The program standardizes natural gas resources, mining load, field operation rules, environmental records and the LinkPlant data framework. OEMs submit their own technical routes and generator solutions.",
       galleryTitle: "Field records first",
-      galleryLead: "The page prioritizes continuous operation, effectively consumed energy, stoppage reasons, response time and staged records over marketing claims.",
-      feedOneLabel: "LinkPlant",
-      feedOneValue: "Runtime capture",
-      feedTwoLabel: "Settlement",
-      feedTwoValue: "Effective consumed kWh",
+      galleryLead: "The page prioritizes cumulative consumed energy, generated power, efficiency, online rate, stoppage reasons and staged records over marketing claims.",
+      feedOneLabel: "Settlement",
+      feedOneValue: "Cumulative consumed kWh",
+      feedTwoLabel: "LinkPlant",
+      feedTwoValue: "Power / efficiency / online rate",
       feedThreeLabel: "Stage Report",
       feedThreeValue: "Observation reports",
       brandsTitle: "Generator brands in evaluation",
-      brandsLead: "Brand display indicates participation or intended participation only. It is not a procurement recommendation.",
-      brandPrev: "Previous generator brands",
-      brandNext: "Next generator brands",
+      brandsLead: "All participating OEMs are shown together so observers can immediately see who is in or planned for the competition.",
       compareTitle: "Generator unit comparison",
-      compareLead: "Each OEM provides two 250 kW-class units. Public fields focus on operation, outages, response and submitted files.",
+      compareLead: "The competition standardizes container size, such as a 40 ft high-cube container, and power-cabin size, such as 5.6 m. It does not lock a single power class; public fields focus on generated power, efficiency, hours, online rate, cumulative generation, outages and response.",
       filterAll: "All",
       filterRunning: "Running",
       filterPending: "Pending",
@@ -170,9 +169,11 @@
       thUnit: "Unit",
       thModel: "Model",
       thStatus: "Status",
-      thPower: "Output",
+      thPower: "Generated power",
+      thEfficiency: "Efficiency",
       thHours: "Hours",
       thOnline: "Online",
+      thEnergy: "Cumulative generation",
       thOutage: "Outage",
       thResponse: "Response",
       thAction: "Actions",
@@ -206,7 +207,7 @@
       monitorTitle: "Monitoring view",
       monitorCopy: "Monitoring display depends on camera integration and authorized disclosure scope.",
       loadRate: "Load",
-      outputStatus: "Output",
+      outputStatus: "Generated power",
       voltage: "Voltage",
       current: "Current",
       frequency: "Frequency",
@@ -215,6 +216,9 @@
       gasPressure: "Gas pressure",
       coolantTemp: "Coolant temp",
       oilPressure: "Oil pressure",
+      exhaustTemp: "Pre-turbine exhaust temp",
+      manifoldPressure: "Intake manifold pressure",
+      manifoldTemp: "Intake manifold temp",
       continuousHours: "Continuous runtime",
       runningRemark: "Operating note",
       coreConfig: "Core configuration",
@@ -256,8 +260,6 @@
     var languageToggle = document.getElementById("languageToggle");
     languageToggle.classList.toggle("is-en", lang === "en");
     languageToggle.setAttribute("aria-pressed", String(lang === "en"));
-    document.getElementById("brandPrev").setAttribute("aria-label", t("brandPrev"));
-    document.getElementById("brandNext").setAttribute("aria-label", t("brandNext"));
   }
 
   function getVisibleSuppliers() {
@@ -271,14 +273,18 @@
     var totalUnits = data.suppliers.reduce(function (sum, supplier) {
       return sum + supplier.units.length;
     }, 0);
-    var totalHours = data.suppliers.reduce(function (sum, supplier) {
-      return sum + supplier.units.reduce(function (unitSum, unit) {
-        return unitSum + Number(unit.hours || 0);
-      }, 0);
-    }, 0);
     document.getElementById("supplierCount").textContent = data.suppliers.length;
     document.getElementById("unitCount").textContent = totalUnits;
-    document.getElementById("runtimeTotal").textContent = totalHours.toLocaleString() + " h";
+    document.getElementById("runtimeTotal").textContent = formatCalendarTime(data.event_start || "2026-06-21T00:00:00+08:00");
+  }
+
+  function formatCalendarTime(startValue) {
+    var start = new Date(startValue);
+    var elapsedMs = Math.max(0, Date.now() - start.getTime());
+    var days = Math.floor(elapsedMs / 86400000);
+    var hours = Math.floor((elapsedMs % 86400000) / 3600000);
+    if (lang === "zh") return days + " 天 " + hours + " h";
+    return days + " d " + hours + " h";
   }
 
   function renderMethods() {
@@ -305,96 +311,12 @@
         "</article>"
       ].join("");
     }).join("");
-    brandPage = 0;
-    renderBrandDots();
-    updateBrandCarousel();
-    startBrandCarousel();
-  }
-
-  function getBrandVisibleCount() {
-    if (window.innerWidth <= 720) return 1;
-    if (window.innerWidth <= 960) return 2;
-    return 3;
-  }
-
-  function getBrandPageCount() {
-    return Math.max(1, Math.ceil(data.suppliers.length / getBrandVisibleCount()));
-  }
-
-  function renderBrandDots() {
-    var pageCount = getBrandPageCount();
-    var dots = document.getElementById("brandDots");
-    dots.innerHTML = Array.from({ length: pageCount }).map(function (_, index) {
-      var label = lang === "zh" ? "第 " + (index + 1) + " 组主机厂" : "Generator brand group " + (index + 1);
-      return '<button class="brand-dot" type="button" data-brand-page="' + index + '" aria-label="' + escapeHtml(label) + '"></button>';
-    }).join("");
-  }
-
-  function updateBrandCarousel() {
-    var carousel = document.getElementById("brandCarousel");
-    var viewport = document.getElementById("brandViewport");
-    var track = document.getElementById("brandWall");
-    var pageCount = getBrandPageCount();
-    brandPage = Math.max(0, Math.min(brandPage, pageCount - 1));
-    track.style.transform = "translate3d(-" + (brandPage * viewport.clientWidth) + "px, 0, 0)";
-    carousel.classList.toggle("is-static", pageCount <= 1);
-    document.querySelectorAll(".brand-dot").forEach(function (dot, index) {
-      dot.classList.toggle("is-active", index === brandPage);
-      dot.setAttribute("aria-current", index === brandPage ? "true" : "false");
-    });
-  }
-
-  function goBrandPage(page) {
-    var pageCount = getBrandPageCount();
-    brandPage = (page + pageCount) % pageCount;
-    updateBrandCarousel();
-    startBrandCarousel();
-  }
-
-  function stopBrandCarousel() {
-    if (brandTimer) {
-      clearInterval(brandTimer);
-      brandTimer = null;
-    }
-  }
-
-  function startBrandCarousel() {
-    stopBrandCarousel();
-    if (getBrandPageCount() <= 1) return;
-    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    brandTimer = setInterval(function () {
-      goBrandPage(brandPage + 1);
-    }, 4200);
-  }
-
-  function bindBrandCarousel() {
-    var carousel = document.getElementById("brandCarousel");
-    document.getElementById("brandPrev").addEventListener("click", function () {
-      goBrandPage(brandPage - 1);
-    });
-    document.getElementById("brandNext").addEventListener("click", function () {
-      goBrandPage(brandPage + 1);
-    });
-    document.getElementById("brandDots").addEventListener("click", function (event) {
-      var dot = event.target.closest("[data-brand-page]");
-      if (!dot) return;
-      goBrandPage(Number(dot.getAttribute("data-brand-page")));
-    });
-    carousel.addEventListener("mouseenter", stopBrandCarousel);
-    carousel.addEventListener("mouseleave", startBrandCarousel);
-    carousel.addEventListener("focusin", stopBrandCarousel);
-    carousel.addEventListener("focusout", startBrandCarousel);
-    window.addEventListener("resize", function () {
-      renderBrandDots();
-      updateBrandCarousel();
-      startBrandCarousel();
-    });
   }
 
   function renderRows() {
     var suppliers = getVisibleSuppliers();
     if (!suppliers.length) {
-      document.getElementById("comparisonRows").innerHTML = '<tr><td colspan="10">' + escapeHtml(t("empty")) + "</td></tr>";
+      document.getElementById("comparisonRows").innerHTML = '<tr><td colspan="12">' + escapeHtml(t("empty")) + "</td></tr>";
       renderDetail();
       return;
     }
@@ -409,8 +331,10 @@
           "<td>" + escapeHtml(supplier.model) + "</td>",
           '<td><span class="status-pill' + statusClass + '">' + escapeHtml(pick(unit, "status")) + "</span></td>",
           "<td>" + (unit.output_kw ? escapeHtml(unit.output_kw + t("kw")) : "-") + "</td>",
+          "<td>" + escapeHtml(unit.efficiency || (unit.output_kw ? "38.5%" : "-")) + "</td>",
           "<td>" + escapeHtml(unit.hours + " h") + "</td>",
           "<td>" + escapeHtml(unit.online_rate) + "</td>",
+          "<td>" + escapeHtml(formatEnergy(unit)) + "</td>",
           "<td>" + escapeHtml(unit.outages) + "</td>",
           "<td>" + escapeHtml(supplier.response_time) + "</td>",
           index === 0 ? '<td rowspan="' + supplier.units.length + '"><div class="action-stack"><button class="detail-button" type="button" data-panel="status" data-supplier="' + supplier.id + '">' + escapeHtml(activePanel.supplierId === supplier.id && activePanel.mode === "status" ? t("close") : t("details")) + '</button><button class="detail-button route-button" type="button" data-panel="route" data-supplier="' + supplier.id + '">' + escapeHtml(activePanel.supplierId === supplier.id && activePanel.mode === "route" ? t("close") : t("routeButton")) + "</button></div></td>" : "",
@@ -424,7 +348,13 @@
   function renderInlinePanel(supplier) {
     if (activePanel.supplierId !== supplier.id || !activePanel.mode) return "";
     var html = activePanel.mode === "status" ? renderStatusPanel(supplier) : renderRoutePanel(supplier);
-    return '<tr class="supplier-detail-row"><td colspan="10"><div class="detail-panel inline-detail-panel">' + html + "</div></td></tr>";
+    return '<tr class="supplier-detail-row"><td colspan="12"><div class="detail-panel inline-detail-panel">' + html + "</div></td></tr>";
+  }
+
+  function formatEnergy(unit) {
+    if (!unit.output_kw || !unit.hours) return "-";
+    var energy = unit.energy_kwh || Math.round(Number(unit.output_kw) * Number(unit.hours));
+    return energy.toLocaleString() + " kWh";
   }
 
   function renderDetail() {
@@ -456,14 +386,18 @@
       '<div class="runtime-specs">',
       miniSpec(t("loadRate"), runtime.load_rate),
       miniSpec(t("outputStatus"), unit.output_kw ? unit.output_kw + t("kw") : "-"),
+      miniSpec(t("thEfficiency"), unit.efficiency || (unit.output_kw ? "38.5%" : "-")),
       miniSpec(t("voltage"), runtime.voltage_v),
       miniSpec(t("current"), runtime.current_a),
       miniSpec(t("frequency"), runtime.frequency_hz),
       miniSpec(t("powerFactor"), runtime.power_factor),
       miniSpec(t("rpm"), runtime.rpm),
       miniSpec(t("gasPressure"), runtime.gas_pressure_kpa),
-      miniSpec(t("coolantTemp"), runtime.coolant_temp_c),
+      miniSpec(t("exhaustTemp"), runtime.exhaust_temp_c),
+      miniSpec(t("manifoldPressure"), runtime.manifold_pressure_kpa),
+      miniSpec(t("manifoldTemp"), runtime.manifold_temp_c),
       miniSpec(t("oilPressure"), runtime.oil_pressure_kpa),
+      miniSpec(t("coolantTemp"), runtime.coolant_temp_c),
       miniSpec(t("continuousHours"), runtime.continuous_hours),
       miniSpec(t("runningRemark"), pick(unit, "remark")),
       "</div>",
@@ -480,6 +414,9 @@
       power_factor: unit.power_factor || (unit.output_kw ? "0.98" : "-"),
       rpm: unit.rpm || (unit.output_kw ? "1,500 rpm" : "-"),
       gas_pressure_kpa: unit.gas_pressure_kpa || (unit.output_kw ? "7.2 kPa" : "-"),
+      exhaust_temp_c: unit.exhaust_temp_c || (unit.output_kw ? "642°C" : "-"),
+      manifold_pressure_kpa: unit.manifold_pressure_kpa || (unit.output_kw ? "168 kPa" : "-"),
+      manifold_temp_c: unit.manifold_temp_c || (unit.output_kw ? "46°C" : "-"),
       coolant_temp_c: unit.coolant_temp_c || (unit.output_kw ? "86°C" : "-"),
       oil_pressure_kpa: unit.oil_pressure_kpa || (unit.output_kw ? "420 kPa" : "-"),
       continuous_hours: unit.continuous_hours || (unit.hours ? unit.hours + " h" : "-")
@@ -663,6 +600,5 @@
 
   bindComparison();
   bindForm();
-  bindBrandCarousel();
   loadData();
 })();
